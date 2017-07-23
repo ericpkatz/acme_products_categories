@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+      <h2>Products for {{ catName }}</h2>
+
+        <form action="/categories/{{ catName }}/products" method="POST">
+          <div class='well'>
+             {% if error %}{% block errorMsg %}{% endblock %}{% endif %}
+            <div class='form-group'>
+              <input class="form-control" type="text" name="name" placeholder="product name">
+
+            </div>
+            <button class='btn btn-primary'>Save</button>
+          </div>
+        </form>
+        <ul class="list-group">
+
+        {% for product in products %}
+          <li class="list-group-item">{{ product.name }}
+            <form action="/categories/{{ catName }}/products/{{ product.id }}?_method=DELETE" method="POST">
+             <button class='btn btn-warning'>Delete </button>
+            </form>
+
+          </li>
+        {% endfor %}
+
+        </ul>
+
+
+
+        <form action="/categories/{{ catName }}/products?_method=DELETE" method="POST">
+
+          <button class='btn btn-danger'>Delete Category</button>
+
+        </form>
+
+
+{% endblock %}

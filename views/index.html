@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+      <h2>Home</h2>
+
+      <div class='well'>
+        {% if error %}{% block errorMsg %}{% endblock %}{% endif %}
+        <form action="/" method="POST">
+          <div class='form-group'>
+            <input class="form-control" type="text" name="name" placeholder="category name">
+
+          </div>
+          <button class='btn btn-primary'>Save</button>
+        </form>
+      </div>
+
+
+{% endblock %}
+
