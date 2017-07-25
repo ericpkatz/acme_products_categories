@@ -20,21 +20,19 @@ app.get('/', function(req, res, next){
   res.render('index.html', {categories: db.getCategoryNames(), nav: 'Home', data: JSON.stringify(db.getDB(), null, ' ')});
 });
 
-
 app.use('/categories', categories);
-
-app.use('/categories/:category/products', function(err, req, res, next){
-  res.render('errorProd.html', { error: err, products: db.getProductsByCategory(req.params.category), catName: req.params.category, categories: db.getCategoryNames(), data: JSON.stringify(db.getDB(), null, ' ') });
-});
-
 
 app.post('/', function(req, res, next){
   db.createCategory(req.body);
   res.redirect(`/categories/${ req.body.name }/products`);
 });
 
+app.use('/categories/:category/products', function(err, req, res, next){
+  res.render('category.html', { error: err, products: db.getProductsByCategory(req.params.category), catName: req.params.category, categories: db.getCategoryNames(), data: JSON.stringify(db.getDB(), null, ' ') });
+});
+
 app.use('/', function(err, req, res, next){
-  res.render('errorCat.html', { error: err, products: db.getProductsByCategory(req.params.category), catName: req.params.category, categories: db.getCategoryNames(), data: JSON.stringify(db.getDB(), null, ' ') });
+  res.render('index.html', { error: err, products: db.getProductsByCategory(req.params.category), catName: req.params.category, categories: db.getCategoryNames(), data: JSON.stringify(db.getDB(), null, ' ') });
 });
 
 

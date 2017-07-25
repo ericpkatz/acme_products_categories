@@ -5,7 +5,7 @@
       <h2>Home</h2>
 
       <div class='well'>
-        {% if error %}{% block errorMsg %}{% endblock %}{% endif %}
+        {% if error %}{% include 'errorMsg.html' %}{% endif %}
         <form action="/" method="POST">
           <div class='form-group'>
             <input class="form-control" type="text" name="name" placeholder="category name">

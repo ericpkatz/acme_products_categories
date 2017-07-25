@@ -6,7 +6,7 @@
 
         <form action="/categories/{{ catName }}/products" method="POST">
           <div class='well'>
-             {% if error %}{% block errorMsg %}{% endblock %}{% endif %}
+             {% if error %}{% include 'errorMsg.html' %}{% endif %}
             <div class='form-group'>
               <input class="form-control" type="text" name="name" placeholder="product name">
 
